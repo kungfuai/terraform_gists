@@ -34,11 +34,11 @@ module "networking" {
 module "ec2" {
   source = "./ec2"
 
-  ami = "ami-0593ffb7dffe7b5e8"
+  ami = "ami-075ff764302e6e088"
   instance_type = "p3.2xlarge"
   aws_key_pair_name = "Allix5EvaluationKey"
-  security_group_ids = ["sg-0dbe850523b99d9d2"]
-  subnet_id = "subnet-0a08999cc45f49537"
+  security_group_ids = [module.networking.allow_ssh]
+  subnet_id = module.networking.network.public_subnets[0]
   iam_instance_profile = module.networking.iam_profile
 }
 
