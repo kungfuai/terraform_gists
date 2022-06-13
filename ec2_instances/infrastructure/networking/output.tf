@@ -1,7 +1,3 @@
-output "network" {
-  value = module.vpc
-}
-
 output "iam_profile" {
   value = aws_iam_instance_profile.task_profile.name
 }

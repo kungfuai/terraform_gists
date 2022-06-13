@@ -24,11 +24,8 @@ locals {
 module "networking" {
   source = "./networking"
 
-  env    = "development"
-  vpc_name = "allix5_vpc"
-  service_name = "com.amazonaws.us-west-2.s3"
-  endpoint_type = "Gateway"
-  account_name = local.account_name
+  vpc_id = "vpc-01ddcb7b9f14ef93f"
+  ingress_cidr_block = "10.16.129.112/28"
 }
 
 module "ec2" {
@@ -38,7 +35,7 @@ module "ec2" {
   instance_type = "p3.2xlarge"
   aws_key_pair_name = "Allix5EvaluationKey"
   security_group_ids = [module.networking.allow_ssh]
-  subnet_id = module.networking.network.public_subnets[0]
+  subnet_id = "subnet-0a2a1fdf1eaa75b03"
   iam_instance_profile = module.networking.iam_profile
 }
 

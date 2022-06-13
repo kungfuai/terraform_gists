@@ -17,7 +17,6 @@ EOF
 
   tags = {
     Terraform = true
-    Account   = var.account_name
   }
 }
 

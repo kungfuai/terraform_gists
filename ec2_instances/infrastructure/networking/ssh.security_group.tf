@@ -1,14 +1,14 @@
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow SSH inbound traffic"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "Webserver Ingress 22"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.ingress_cidr_block]
   }
 
   egress {
@@ -22,7 +22,5 @@ resource "aws_security_group" "allow_ssh" {
   tags = {
     Name      = "allow_ssh"
     Terraform = "true"
-    Env       = var.env
-    Account   = var.account_name
   }
 }
